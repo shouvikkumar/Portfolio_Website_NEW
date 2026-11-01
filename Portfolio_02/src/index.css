@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-bg font-sans text-ink overflow-x-hidden;
+  }
+  /* custom cursor only on devices with a real pointer */
+  @media (pointer: fine) {
+    *, *::before, *::after { cursor: none !important; }
+  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #060608; }
+  ::-webkit-scrollbar-thumb { background: #7c6dfa; border-radius: 2px; }
+}
+
+@layer components {
+  .glass { @apply bg-white/[0.04] border border-white/[0.07]; }
+  .grad-text { @apply bg-gradient-to-r from-a1 to-a2 bg-clip-text text-transparent; }
+  .grad-bg { @apply bg-gradient-to-br from-a1 to-a2; }
+  .live-dot { @apply h-[7px] w-[7px] shrink-0 rounded-full bg-a3 animate-ping2; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
